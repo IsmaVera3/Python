@@ -20,14 +20,14 @@ image_urls = []
 # Obtener las URL de las imágenes y añadirlas a la lista
 for i in img_tags:
     src = i.get('src')
-    if src:
-        image_url = urljoin(url, src)
-        image_urls.append(image_url)
+    image_url = urljoin(url, src)
+    image_urls.append(image_url)
 
 # Descargar y guardar cada imagen con su ID
 for i, image_url in enumerate(image_urls):
     image_data = requests.get(image_url).content
-    with open(f'imagen_{i + 1}.jpg', 'wb') as img_file:
-        img_file.write(image_data)
+    img_file = open(f'imagen_{i + 1}.jpg', 'wb')
+    img_file.write(image_data)
+    img_file.close()
 
 print("Imágenes descargadas exitosamente.")
